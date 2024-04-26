@@ -1,0 +1,48 @@
+version: "3.8"
+services:
+  # database
+  database:
+    container_name: "bot-database"
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: "${PG_DB_NAME}"
+      POSTGRES_USER: "${PG_USR}"
+      POSTGRES_PASSWORD: "${PG_PWD}"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "${PG_PORT}:5432"
+  # liquibase migrations
+  liquibase:
+    container_name: "liquibase-migrations"
+    image: liquibase/liquibase:4.26.0-alpine
+    command:
+      - --url=jdbc:postgresql://database:5432/${PG_DB_NAME}
+      - --changeLogFile=changelog.yaml
+      - --searchpath=migration
+      - --username=${PG_USR}
+      - --password=${PG_PWD}
+      - --log-level=1
+      - update
+    volumes:
+      - ./liquibase:/liquibase/migration
+    depends_on:
+      database:
+        condition: service_healthy
+  # bot application
+  bot-app:
+    container_name: "bot-app"
+    build: .
+    environment:
+      DB_JDBC: "jdbc:postgresql://database:5432/${PG_DB_NAME}"
+      DB_PWD: "${PG_PWD}"
+      DB_USR: "${PG_USR}"
+      TG_TOKEN: "${TELEGRAM_TOKEN}"
+    ports:
+      - "${APP_PORT}:8080"
+    depends_on:
+      liquibase:
+        condition: service_completed_successfully

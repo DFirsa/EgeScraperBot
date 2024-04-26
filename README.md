@@ -1,0 +1,1 @@
+App for inform students about their exam results, based on parsing data.

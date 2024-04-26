@@ -1,0 +1,14 @@
+results-source:
+  spb-ege:
+    url: https://www.ege.spb.ru/result/index.php
+    selector:
+      subject: exam-subject-info
+      result: exam-result
+    result-parser:
+      exam-success: зачёт
+tg-bot:
+  token: ${TG_TOKEN}
+database:
+  jdbc-url: ${DB_JDBC}
+  user: ${DB_USR}
+  password: ${DB_PWD}
