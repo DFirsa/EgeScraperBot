@@ -85,10 +85,9 @@ open class Student(
     val PASSPORT_NUMBER: TableField<StudentRecord, String?> = createField(DSL.name("passport_number"), SQLDataType.CLOB.nullable(false), this, "Passport's number")
 
     /**
-     * The column <code>results.student.name</code>. Optional user name
-     * (nickname)
+     * The column <code>results.student.surname</code>. Student's surname
      */
-    val NAME: TableField<StudentRecord, String?> = createField(DSL.name("name"), SQLDataType.CLOB, this, "Optional user name (nickname)")
+    val SURNAME: TableField<StudentRecord, String?> = createField(DSL.name("surname"), SQLDataType.CLOB.nullable(false), this, "Student's surname")
 
     /**
      * The column <code>results.student.exam_type</code>. Type of exam (EGE/OGE)

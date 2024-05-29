@@ -22,7 +22,7 @@ class DefaultClassBasedScraper(
         val examResult = if (pointResult == null) result.lowercase() == examSuccessResult else null
 
         check(pointResult != null || examResult != null)
-        return Result(subject, examResult, pointResult)
+        return Result(subject, examResult, pointResult, null)
     }
 
     companion object {

@@ -4,6 +4,7 @@
 package ege.bot.service.codegen.models.indexes
 
 
+import ege.bot.service.codegen.models.tables.ExamResult
 import ege.bot.service.codegen.models.tables.Student
 
 import org.jooq.Index
@@ -16,4 +17,5 @@ import org.jooq.impl.Internal
 // INDEX definitions
 // -------------------------------------------------------------------------
 
+val IX_RESULT_NOT_REPORTED: Index = Internal.createIndex(DSL.name("ix_result_not_reported"), ExamResult.EXAM_RESULT, arrayOf(ExamResult.EXAM_RESULT.IS_REPORTED), false)
 val IX_STUDENT_YEAR: Index = Internal.createIndex(DSL.name("ix_student_year"), Student.STUDENT, arrayOf(Student.STUDENT.EXAM_YEAR), false)

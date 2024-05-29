@@ -4,6 +4,7 @@ package ege.bot.service.data_getter
 import ege.bot.model.ExamType
 import ege.bot.model.IdentificationInfo
 import org.jsoup.nodes.Document
+import java.net.URLEncoder
 import java.time.Year
 
 interface DataGetter {

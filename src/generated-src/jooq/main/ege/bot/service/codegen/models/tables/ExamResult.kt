@@ -5,6 +5,7 @@ package ege.bot.service.codegen.models.tables
 
 
 import ege.bot.service.codegen.models.Results
+import ege.bot.service.codegen.models.indexes.IX_RESULT_NOT_REPORTED
 import ege.bot.service.codegen.models.keys.EXAM_RESULT_PKEY
 import ege.bot.service.codegen.models.keys.EXAM_RESULT__FK_STUDENT_ID
 import ege.bot.service.codegen.models.tables.records.ExamResultRecord
@@ -13,6 +14,7 @@ import kotlin.collections.List
 
 import org.jooq.Field
 import org.jooq.ForeignKey
+import org.jooq.Index
 import org.jooq.Name
 import org.jooq.Record
 import org.jooq.Schema
@@ -81,6 +83,12 @@ open class ExamResult(
      */
     val STUDENT_ID: TableField<ExamResultRecord, Long?> = createField(DSL.name("student_id"), SQLDataType.BIGINT.nullable(false), this, "Student who's result it is")
 
+    /**
+     * The column <code>results.exam_result.is_reported</code>. Is result has
+     * been reported to user
+     */
+    val IS_REPORTED: TableField<ExamResultRecord, Boolean?> = createField(DSL.name("is_reported"), SQLDataType.BOOLEAN.nullable(false).defaultValue(DSL.field(DSL.raw("false"), SQLDataType.BOOLEAN)), this, "Is result has been reported to user")
+
     private constructor(alias: Name, aliased: Table<ExamResultRecord>?): this(alias, null, null, aliased, null)
     private constructor(alias: Name, aliased: Table<ExamResultRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 
@@ -101,6 +109,7 @@ open class ExamResult(
 
     constructor(child: Table<out Record>, key: ForeignKey<out Record, ExamResultRecord>): this(Internal.createPathAlias(child, key), child, key, EXAM_RESULT, null)
     override fun getSchema(): Schema? = if (aliased()) null else Results.RESULTS
+    override fun getIndexes(): List<Index> = listOf(IX_RESULT_NOT_REPORTED)
     override fun getPrimaryKey(): UniqueKey<ExamResultRecord> = EXAM_RESULT_PKEY
     override fun getReferences(): List<ForeignKey<ExamResultRecord, *>> = listOf(EXAM_RESULT__FK_STUDENT_ID)
 

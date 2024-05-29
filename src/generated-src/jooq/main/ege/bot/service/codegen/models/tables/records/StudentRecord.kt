@@ -32,7 +32,7 @@ open class StudentRecord() : UpdatableRecordImpl<StudentRecord>(Student.STUDENT)
         set(value): Unit = set(3, value)
         get(): String? = get(3) as String?
 
-    open var name: String?
+    open var surname: String?
         set(value): Unit = set(4, value)
         get(): String? = get(4) as String?
 
@@ -53,12 +53,12 @@ open class StudentRecord() : UpdatableRecordImpl<StudentRecord>(Student.STUDENT)
     /**
      * Create a detached, initialised StudentRecord
      */
-    constructor(id: Long? = null, chatId: Long? = null, passportSeries: String? = null, passportNumber: String? = null, name: String? = null, examType: String? = null, examYear: Short? = null): this() {
+    constructor(id: Long? = null, chatId: Long? = null, passportSeries: String? = null, passportNumber: String? = null, surname: String? = null, examType: String? = null, examYear: Short? = null): this() {
         this.id = id
         this.chatId = chatId
         this.passportSeries = passportSeries
         this.passportNumber = passportNumber
-        this.name = name
+        this.surname = surname
         this.examType = examType
         this.examYear = examYear
         resetChangedOnNotNull()

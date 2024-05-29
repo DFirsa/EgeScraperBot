@@ -6,6 +6,7 @@ import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
+import java.net.URLEncoder
 import java.time.Year
 
 @Service
@@ -15,15 +16,27 @@ class SpbEgeDataGetter(
 ): DataGetter {
 
     override fun getPageData(examType: ExamType, year: Year, idInfo: IdentificationInfo): Document {
-        val urlParams = mapOf("mode" to "${examType.id}${year}")
+        val urlParams = mapOf(
+            "mode" to "${examType.id}${year}",
+            "wave" to "2"
+        )
         val url = buildUrl(baseUrl, "", urlParams)
+        val data = buildData(idInfo)
 
         return Jsoup.connect(url)
-            .data("Series", idInfo.series, "Number", idInfo.number, "Login", DEFAULT_LOGIN)
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .requestBody(data)
             .post()
     }
 
+    private fun buildData(idInfo: IdentificationInfo): String {
+        val surname = URLEncoder.encode(idInfo.surname, ENCODING)
+        val login = URLEncoder.encode(DEFAULT_LOGIN, ENCODING)
+        return "pLastName=$surname&Series=${idInfo.series}&Number=${idInfo.number}&Login=$login"
+    }
+
     companion object {
-        const val DEFAULT_LOGIN = ""
+        const val DEFAULT_LOGIN = "Посмотреть результаты"
+        const val ENCODING = "windows-1251"
     }
 }

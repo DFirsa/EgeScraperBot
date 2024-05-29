@@ -68,6 +68,12 @@ open class Chat(
      */
     val CHAT_MODE: TableField<ChatRecord, String?> = createField(DSL.name("chat_mode"), SQLDataType.CLOB.nullable(false), this, "Chat type (TEACHER_CHAT/USER_CHAT). If you're teacher you're able to get results for multiple students")
 
+    /**
+     * The column <code>results.chat.state</code>. Current chat state (current
+     * scenario)
+     */
+    val STATE: TableField<ChatRecord, String?> = createField(DSL.name("state"), SQLDataType.CLOB, this, "Current chat state (current scenario)")
+
     private constructor(alias: Name, aliased: Table<ChatRecord>?): this(alias, null, null, aliased, null)
     private constructor(alias: Name, aliased: Table<ChatRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
 

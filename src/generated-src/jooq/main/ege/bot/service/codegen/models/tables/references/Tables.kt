@@ -5,6 +5,7 @@ package ege.bot.service.codegen.models.tables.references
 
 
 import ege.bot.service.codegen.models.tables.Chat
+import ege.bot.service.codegen.models.tables.ChatPolls
 import ege.bot.service.codegen.models.tables.ExamResult
 import ege.bot.service.codegen.models.tables.Student
 
@@ -14,6 +15,11 @@ import ege.bot.service.codegen.models.tables.Student
  * Table with chats (e.g. users)
  */
 val CHAT: Chat = Chat.CHAT
+
+/**
+ * Information about active polls
+ */
+val CHAT_POLLS: ChatPolls = ChatPolls.CHAT_POLLS
 
 /**
  * Results table

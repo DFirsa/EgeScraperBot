@@ -14,7 +14,7 @@ plugins {
 
     id("nu.studer.jooq") version "9.0"
 }
-rm
+
 group = "ege.bot"
 version = "1.0-SNAPSHOT"
 
@@ -34,6 +34,9 @@ dependencies {
     implementation("io.github.kotlin-telegram-bot.kotlin-telegram-bot:telegram:6.1.0")
     implementation("org.jsoup:jsoup:1.17.2")
     implementation("org.postgresql:postgresql")
+
+    implementation("org.apache.poi:poi:5.2.5")
+    implementation("org.apache.poi:poi-ooxml:5.2.5")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 

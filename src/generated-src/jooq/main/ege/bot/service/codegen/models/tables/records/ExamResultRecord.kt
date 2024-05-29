@@ -34,6 +34,12 @@ open class ExamResultRecord() : UpdatableRecordImpl<ExamResultRecord>(ExamResult
         set(value): Unit = set(3, value)
         get(): Long? = get(3) as Long?
 
+    @Suppress("INAPPLICABLE_JVM_NAME")
+    @set:JvmName("setIsReported")
+    open var isReported: Boolean?
+        set(value): Unit = set(4, value)
+        get(): Boolean? = get(4) as Boolean?
+
     // -------------------------------------------------------------------------
     // Primary key information
     // -------------------------------------------------------------------------
@@ -43,11 +49,12 @@ open class ExamResultRecord() : UpdatableRecordImpl<ExamResultRecord>(ExamResult
     /**
      * Create a detached, initialised ExamResultRecord
      */
-    constructor(examName: String? = null, absoluteResult: Int? = null, isPassedResult: Boolean? = null, studentId: Long? = null): this() {
+    constructor(examName: String? = null, absoluteResult: Int? = null, isPassedResult: Boolean? = null, studentId: Long? = null, isReported: Boolean? = null): this() {
         this.examName = examName
         this.absoluteResult = absoluteResult
         this.isPassedResult = isPassedResult
         this.studentId = studentId
+        this.isReported = isReported
         resetChangedOnNotNull()
     }
 }

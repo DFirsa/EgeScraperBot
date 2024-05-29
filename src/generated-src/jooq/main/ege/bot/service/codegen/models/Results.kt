@@ -6,6 +6,7 @@ package ege.bot.service.codegen.models
 
 import ege.bot.service.codegen.models.sequences.STUDENT_ID
 import ege.bot.service.codegen.models.tables.Chat
+import ege.bot.service.codegen.models.tables.ChatPolls
 import ege.bot.service.codegen.models.tables.ExamResult
 import ege.bot.service.codegen.models.tables.Student
 
@@ -36,6 +37,11 @@ open class Results : SchemaImpl("results", DefaultCatalog.DEFAULT_CATALOG) {
     val CHAT: Chat get() = Chat.CHAT
 
     /**
+     * Information about active polls
+     */
+    val CHAT_POLLS: ChatPolls get() = ChatPolls.CHAT_POLLS
+
+    /**
      * Results table
      */
     val EXAM_RESULT: ExamResult get() = ExamResult.EXAM_RESULT
@@ -53,6 +59,7 @@ open class Results : SchemaImpl("results", DefaultCatalog.DEFAULT_CATALOG) {
 
     override fun getTables(): List<Table<*>> = listOf(
         Chat.CHAT,
+        ChatPolls.CHAT_POLLS,
         ExamResult.EXAM_RESULT,
         Student.STUDENT
     )
