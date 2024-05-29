@@ -27,6 +27,7 @@ class DatasourceConfiguration {
                     Settings()
                         .withRenderSchema(true)
                         .withFetchWarnings(false)
+                        .withExecuteLogging(false)
                 )
         )
     }
