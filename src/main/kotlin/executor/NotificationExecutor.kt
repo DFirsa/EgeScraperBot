@@ -9,7 +9,7 @@ class NotificationExecutor(
     private val notificationService: NotificationService
 ) {
 
-    @Scheduled(cron = "0 0/10 * * * *")
+    @Scheduled(cron = "0 5/10 * * * *")
     fun doJob() {
         notificationService.notifyUsers()
     }
