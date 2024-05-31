@@ -7,11 +7,11 @@
 ![img](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)
 ![img](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)
 
-
-
 ## About
 Telegram bot application created for automation Russian exam results fetching.
 Bot is fetching results only for Saint-Petersburg region using [special resource](https://www.ege.spb.ru).
+
+You can check it out by your own: https://t.me/WhatIsMyExamResultBot
 
 ## Available features:
 - Add students data for fetching (using text or excel-file)
